@@ -1,0 +1,24 @@
+game_config:
+  blind_amount: 250
+  players:
+    - player_name: "Thomas"
+      initial_bankroll: 2000
+      player_id: 0
+    - player_name: "Tim"
+      initial_bankroll: 2000
+      player_id: 1
+    - player_name: "Colm"
+      initial_bankroll: 1000
+      player_id: 2
+    - player_name: "Cooke"
+      initial_bankroll: 1000
+      player_id: 3
+    - player_name: "Conall"
+      initial_bankroll: 500
+      player_id: 4
+
+database_config:
+  name: poker_database
+  user: test
+  password: test
+  host: 1000 

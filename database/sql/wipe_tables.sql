@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS tbl_actions;
+DROP TABLE IF EXISTS tbl_results;
+DROP TABLE IF EXISTS tbl_rounds;
+DROP TABLE IF EXISTS tbl_agents;
+
+DROP TYPE IF EXISTS hand_value;
+DROP TYPE IF EXISTS action_enum;

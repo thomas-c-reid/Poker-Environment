@@ -1,5 +1,6 @@
 game_config:
   blind_amount: 250
+  action_delay: False
   players:
     - player_name: "Thomas"
       initial_bankroll: 2000
@@ -19,6 +20,5 @@ game_config:
 
 database_config:
   name: poker_database
-  user: test
-  password: test
-  host: 5432
+  host: localhost
+  port: 5432

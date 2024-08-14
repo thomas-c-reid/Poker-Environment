@@ -4,6 +4,7 @@ from env.objects import Card, roundInformation, PlayerTurnManager
 from env.enums import HandValue, BettingStagesEnum
 from env.pots import PotManager
 from logger.logger_config import Logging
+from database.db_manager import DatabaseManager
 
 logger_config = Logging()
 logger = logger_config.get_logger()
@@ -13,8 +14,9 @@ class baseTable(ABC):
     This class will hold all the information to do with the cards 
     '''
     
-    def __init__(self, players: list, blind_amount: int = 20):
-        self.players = players
+    def __init__(self, players: list, blind_amount: int = 20, action_delay: bool=False):
+        self.database = DatabaseManager()
+        self.load_players(players)
         self.table_cards = []
         self.player_cards = []
         self.num_players = len(players)
@@ -24,6 +26,12 @@ class baseTable(ABC):
         self.pot_manager = PotManager(players)
         self.player_turn_manager = PlayerTurnManager(players)
         self.round_index = 1
+        self.action_delay = action_delay
+        
+    def load_players(self, players):
+        for player in players:
+            self.database.add_agent(player)
+        self.players = players
     
     @staticmethod
     def generate_cards():

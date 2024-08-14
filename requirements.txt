@@ -1,0 +1,5 @@
+env==0.1.0
+psycopg2_binary==2.9.9
+PyYAML==6.0
+PyYAML==6.0.2
+shortuuid==1.0.13

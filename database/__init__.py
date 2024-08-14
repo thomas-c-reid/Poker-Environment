@@ -1,5 +1,5 @@
-from database.db_setup import DatabaseSetup
+from database.db_manager import DatabaseManager
 
 __all__ = [
-    'DatabaseSetup'
+    'DatabaseManager'
 ]

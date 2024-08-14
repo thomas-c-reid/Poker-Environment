@@ -1,1 +1,698 @@
-initialising database
+initialising database manager singleton
+creating connection
+CONNECTION ESTABLISHED
+Preparing to wipe tables
+Successfully Wiped Tables
+creating tables
+Tables created successfully
+Added Player: 0 to DB
+Added Player: 1 to DB
+Added Player: 2 to DB
+Added Player: 3 to DB
+Added Player: 4 to DB
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action BET
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action FOLD
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action FOLD
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND
+Adding Action
+added action CALL
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Adding Action
+added action CHECK
+Successfully updated Player Bet Values
+Successfully added Result
+Successfully updated Player Bet Values
+Successfully added Result
+Adding Action
+added action SMALL_BLIND
+Adding Action
+added action BIG_BLIND

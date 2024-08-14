@@ -15,8 +15,7 @@ if __name__ == '__main__':
         if os.path.exists(log_dir):
             with open(log_dir, 'w') as file:
                 pass
-    # dont_write_bytecode = True
+        
     game_runner = GameRunner()
     game_runner.start_game()
-    while True:
-        pass
+    game_runner.end()

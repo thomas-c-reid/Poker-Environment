@@ -15,7 +15,7 @@ class PlayerTurnManager:
         big_blind_idx (int): Index of the current big blind.
     """
     
-    def __init__(self, players: list):
+    def __init__(self, players: list = []):
         self.current_turn_idx = 0
         self.round_max_bet = 0
         
@@ -26,7 +26,7 @@ class PlayerTurnManager:
         self.big_blind_idx = self.get_next_index()
         self.dealer_idx = self.big_blind_idx
         
-    def create_player_statuses(self, players: list):
+    def create_player_statuses(self, players: list = []):
         self.num_players = len(players)
         self.player_statuses = [
             {
@@ -38,7 +38,7 @@ class PlayerTurnManager:
             } for player in players
         ]
         
-    def get_next_index(self, next_idx=None):
+    def get_next_index(self, next_idx: int = None):
         """
         Gets the next index of the player who is eligible to bet within the round.
 
@@ -72,7 +72,7 @@ class PlayerTurnManager:
         self.small_blind_idx = self.get_next_index(self.small_blind_idx)
         self.dealer_idx = self.get_next_index(self.dealer_idx)
 
-    def update_player_status(self, action: actionDto):
+    def update_player_status(self, action: actionDto = None):
         """
         update the status of the player based on given action
         """
@@ -100,7 +100,7 @@ class PlayerTurnManager:
             if player_status_dict['player_id'] != player_id:
                 player_status_dict['has_bet'] = False   
                         
-    def check_game_status(self, betting_stage: BettingStagesEnum):
+    def check_game_status(self, betting_stage: BettingStagesEnum = None):
         """
         Checks whether the current betting round and the overall game are complete.
 
@@ -125,7 +125,7 @@ class PlayerTurnManager:
             
         return betting_complete, round_complete
     
-    def end_round(self, players: list):
+    def end_round(self, players: list = []):
         self.create_player_statuses(players)
         self.update_blinds_and_dealer()
         self.round_max_bet = 0

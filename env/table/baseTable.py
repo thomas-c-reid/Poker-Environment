@@ -3,6 +3,10 @@ from random import randint
 from env.objects import Card, roundInformation, PlayerTurnManager
 from env.enums import HandValue, BettingStagesEnum
 from env.pots import PotManager
+from logger.logger_config import Logging
+
+logger_config = Logging()
+logger = logger_config.get_logger()
 
 class baseTable(ABC):
     '''
@@ -51,27 +55,30 @@ class baseTable(ABC):
                 'cards': cards
             }
             self.player_cards.append(cards_dict)
+        
             
-        print('.'*15)
+        
+        # print('.'*15)
         for player_cards in self.player_cards:
-            print(player_cards)
-            print('*'*15)
+            logger.info(f"[DEAL] - {player_cards['player_id']} {player_cards['cards']}")
+            # print(player_cards)
+            # print('*'*15)
     
     def deal_flop(self):
         cards = self.deal_card(3)
-        print('[CARDS]', cards)
+        # print('[CARDS]', cards)
         self.round_information.table_cards.update(cards)
         return cards
 
     def deal_turn(self):
         card = self.deal_card()
-        print('[CARDS]', card)
+        # print('[CARDS]', card)
         self.round_information.table_cards.update(card)
         return card
 
     def deal_river(self):
         card = self.deal_card()
-        print('[CARDS]', card)
+        # print('[CARDS]', card)
         self.round_information.table_cards.update(card)
         return card
     
@@ -236,7 +243,8 @@ class baseTable(ABC):
         """
         for player in self.players:
             if player.bankroll <= 0:
-                print(f'PLAYER ELIMINATED: {player.player_id}')
+                # print(f'PLAYER ELIMINATED: {player.player_id}')
+                logger.info(f'PLAYER ELIMINATED: {player.player_id}')
                 
         self.players = [player for player in self.players if player.bankroll > 0]
 

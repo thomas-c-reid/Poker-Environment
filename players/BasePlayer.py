@@ -22,17 +22,17 @@ class BasePlayer(ABC):
         self.all_in_flag = False
 
     def print_round_summary(self, result: resultsDto):
-        
-        print('[]'*25)
-        
-        print(f'ROUND COMPLETE | player_name: {self.player_name} - ({self.player_id})')
-        print(f'ROUND COMPLETE | bankroll: {self.bankroll}')
-        print(f'ROUND COMPLETE | results: (+{result.amount_won}) (-{result.amount_bet})')
-        print(f'ROUND COMPLETE | cards: {self.current_cards}')
-        print(f'ROUND COMPLETE | final hand: {result.final_hand}')
-        print(f'ROUND COMPLETE | hand value: {result.final_hand_value}')
-        
-        print('[]'*25)
+        output = ''
+        output += '[]' * 25 + '\n'
+        output += f'ROUND COMPLETE | player_name: {self.player_name} - ({self.player_id})\n'
+        output += f'ROUND COMPLETE | bankroll: {self.bankroll}\n'
+        output += f'ROUND COMPLETE | results: (+{result.amount_won}) (-{result.amount_bet})\n'
+        output += f'ROUND COMPLETE | cards: {self.current_cards}\n'
+        output += f'ROUND COMPLETE | final hand: {result.final_hand}\n'
+        output += f'ROUND COMPLETE | hand value: {result.final_hand_value}\n'
+        output += '[]' * 25 + '\n'
+        return output
+
 
     @abstractmethod
     def pay_blinds(self, blind_type, amount):

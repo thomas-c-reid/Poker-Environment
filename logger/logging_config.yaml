@@ -1,0 +1,43 @@
+version: 1
+
+formatters:
+  standard:
+    format: '%(message)s'
+
+  base:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: standard
+    level: INFO
+
+  general_config:
+    class: logging.FileHandler
+    formatter: standard
+    level: INFO
+    filename: 'logger/logs/general.log'
+    mode: 'a'
+
+  database_config:
+    class: logging.FileHandler
+    formatter: standard
+    level: INFO
+    filename: 'logger/logs/database.log'
+    mode: 'a'
+
+root:
+  level: INFO
+  handlers: [console] 
+  
+loggers:
+  general:
+    level: INFO
+    handlers: [general_config, console]
+    propagate: no
+
+  database:
+    level: DEBUG
+    handlers: [database_config]
+    propagate: no

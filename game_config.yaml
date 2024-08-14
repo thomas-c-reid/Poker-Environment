@@ -21,4 +21,4 @@ database_config:
   name: poker_database
   user: test
   password: test
-  host: 1000 
+  host: 5432

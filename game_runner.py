@@ -1,20 +1,22 @@
-import os
-import sys
 import yaml
-
-os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
-sys.dont_write_bytecode = True
 
 from env.table import tableEnvironment
 from players import Player
 from database.db_setup import DatabaseSetup
+from logger.logger_config import Logging
+
+log_config = Logging()
+logger = log_config.get_logger()
 
 class GameRunner:
     
     def __init__(self):
         game_config, database_config = self.load_game_config()
         self.Table = tableEnvironment(**game_config)
+        logger.info('initialising database')
         self.database = DatabaseSetup(**database_config)
+        
+        
             
     def load_game_config(self, config_file='game_config.yaml'):
         with open(config_file, 'r') as file:
@@ -56,6 +58,8 @@ class GameRunner:
             while not round_terminated:
                 self.Table.deal_table_cards()
                 
+                logger.info(f'[TABLE CARDS] - {self.Table.table_cards}')
+                
                 betting_terminated = False
                 
                 while not betting_terminated:
@@ -63,19 +67,23 @@ class GameRunner:
                     
                     action = player.make_action(self.Table.round_information, self.Table.betting_stage)
                     
-                    print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
+                    logger.info
                     
+                    # print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
+                    logger.info(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
                     betting_terminated, round_terminated = self.Table.step(action)
 
                     if round_terminated:
-                        print('~x~ ROUND TERMINATED ~x~')
+                        logger.info('~x~ ROUND TERMINATED ~x~')
+                        # print('~x~ ROUND TERMINATED ~x~')
                         
                 self.Table.end_round()
                 
             if round_terminated:
                 results, game_terminated = self.Table.settle_round()
                 if game_terminated:
-                    print('GAME OVER')
+                    logger.info('GAME OVER')
+                    # print('GAME OVER')
                     
             if round_count >= 10:
                 game_terminated = True

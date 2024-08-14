@@ -151,4 +151,5 @@ class Player(BasePlayer):
         if result.amount_won > 0:
             self.bankroll += result.amount_won
         
-        self.print_round_summary(result)
+        return self.print_round_summary(result)
+ 

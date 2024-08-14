@@ -20,9 +20,11 @@ class resultsDto:
     final_hand_value: HandValueEnum
     
     def print_results(self):
-        print('player_id: ', self.player_id)
-        print('amount_won: ', self.amount_won)
-        print('amount_bet: ', self.amount_bet)
-        print('reward: ', self.reward)
-        print('final_hand: ', self.final_hand)
-        print('final_hand_value: ', self.final_hand_value)
+        output = f'player_id: {self.player_id}\n'
+        output += f'amount_bet: {self.amount_bet}\n'
+        output += f'amount_won: {self.amount_won}\n'
+        output += f'reward: {self.reward}\n'
+        output += f'final_hand: {self.final_hand}\n'
+        output += f'final_hand_value: {self.final_hand_value}\n'
+        return output
+

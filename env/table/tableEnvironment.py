@@ -2,6 +2,10 @@ from env.table import baseTable
 from env.dtos import actionDto
 from env.enums import actionNameEnum, BettingStagesEnum
 from utils.utils import increase_betting_round
+from logger.logger_config import Logging
+
+logging_config = Logging()
+logger = logging_config.get_logger()
 
 class tableEnvironment(baseTable):
     
@@ -10,10 +14,9 @@ class tableEnvironment(baseTable):
         
     def start_round(self):
         
-        print()
-        print('='*50)
-        print('Starting Round')
-        print('='*50)
+        logger.info('='*50)
+        logger.info('Starting Round')
+        logger.info('='*50)
         
         self.player_cards = []
         self.deal_initial_cards()
@@ -24,7 +27,8 @@ class tableEnvironment(baseTable):
         self.pot_manager.add_action(action)
         self.player_turn_manager.update_player_status(action)
         
-        print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
+        # print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
+        logger.info(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
         
         # BIG BLIND
         action = self.players[self.player_turn_manager.big_blind_idx].pay_blinds(actionNameEnum.BIG_BLIND, self.blind_amount)
@@ -32,8 +36,8 @@ class tableEnvironment(baseTable):
         self.pot_manager.add_action(action)
         self.player_turn_manager.update_player_status(action)
         
-        print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
-        
+        # print(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
+        f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}'
             
     def step(self, action: actionDto):
         
@@ -44,9 +48,11 @@ class tableEnvironment(baseTable):
         betting_complete, round_complete = self.player_turn_manager.check_game_status(self.betting_stage)
         
         if round_complete:
-            print('[ROUND RESULTS] ')
-            print(f'Table Cards: {self.table_cards}')
-            print(f'Total Pot Value: {self.pot_manager.current_pot_value}')
+            logger.info(f'[ROUND RESULTS] - {self.table_cards}')
+            logger.info(f'[ROUND RESULTS] - {self.pot_manager.current_pot_value}')
+            # print('[ROUND RESULTS] ')
+            # print(f'Table Cards: {self.table_cards}')
+            # print(f'Total Pot Value: {self.pot_manager.current_pot_value}')
         return betting_complete, round_complete
     
     def end_round(self):
@@ -79,7 +85,8 @@ class tableEnvironment(baseTable):
             
         for player in self.players:
             result = next(result for result in results if result.player_id == player.player_id)
-            player.update_policy(result)
+            result_message = player.update_policy(result)
+            logger.info(result_message)
         
         
         # reset all objects

@@ -29,6 +29,10 @@ class roundInformation():
         self.current_betting_stage = BettingStagesEnum.PRE_FLOP
         self.total_pot_value = 0 # add this to the DB
         
+        self.small_blind_idx = None
+        self.big_blind_idx = None
+        self.dealer_idx = None
+        
     def increase_round_information(self):
         self.current_betting_stage = increase_betting_round(self.current_betting_stage)
     
@@ -82,6 +86,11 @@ class roundInformation():
         if action.all_in_flag:
             self.player_all_in_status[player_idx] = True
             
+    def update_indexes(self, indexes_dict: dict = None):
+        self.big_blind_idx = indexes_dict['big_blind']
+        self.small_blind_idx = indexes_dict['small_blind']
+        self.dealer_idx = indexes_dict['dealer']
+            
     def create_action_space(self):
         return [action for action in actionNameEnum if action not in (actionNameEnum.BIG_BLIND, actionNameEnum.SMALL_BLIND)]
             
@@ -126,5 +135,8 @@ class roundInformation():
         return (
             table_cards,
             datetime.now() - self.round_started_time,
+            self.small_blind_idx,
+            self.big_blind_idx,
+            self.dealer_idx,
             self.current_round_number,
         )

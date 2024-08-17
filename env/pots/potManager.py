@@ -215,13 +215,15 @@ class PotManager:
         for bet_receipt in sorted_bet_receipts:
             for pot in pots_:
                 if pot.current_bet > 0:
-                    pot.add_to_pot(bet_receipt['amount_bet'])
+                    pot.add_to_pot(pot.current_bet)
                     bet_receipt['amount_bet'] -= pot.current_bet
+                    
             if bet_receipt['amount_bet'] > 0:
                 players_in_pot = [bet_dict['player_id'] for bet_dict in final_bet_dicts if bet_dict['amount_bet'] >= bet_receipt['amount_bet']]
                 pot_ = Pot(players_in_pot=players_in_pot, pot_value=bet_receipt['amount_bet'], round_index=round_index)
                 bet_receipt['amount_bet'] = 0
-                pots_.append(pot_)
+                if len(pot_.players_in_pot) > 1:
+                    pots_.append(pot_)
                 
         self.pots.extend(pots_)
     

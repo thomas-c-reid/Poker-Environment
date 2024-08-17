@@ -72,6 +72,13 @@ class PlayerTurnManager:
         self.small_blind_idx = self.get_next_index(self.small_blind_idx)
         self.dealer_idx = self.get_next_index(self.dealer_idx)
 
+    def return_indexes(self):
+        return {
+            'small_blind': self.small_blind_idx,
+            'big_blind': self.big_blind_idx,
+            'dealer': self.dealer_idx
+        }
+
     def update_player_status(self, action: actionDto = None):
         """
         update the status of the player based on given action
@@ -114,14 +121,24 @@ class PlayerTurnManager:
         betting_complete = True
         round_complete = False
         
+        players_in_play = []
         for player_status_dict in self.player_statuses:
             if player_status_dict['in_play']:
-                if not player_status_dict['has_bet']:
-                    if not player_status_dict['all_in']:
+                if not player_status_dict['all_in']:
+                    if not player_status_dict['has_bet']:
                         betting_complete = False
+                    players_in_play.append(player_status_dict['player_id'])
+                        
+                        
+        # if len(players_in_play) <= 1:
+        #     round_complete = True
+            
         
         if betting_complete and betting_stage == BettingStagesEnum.RIVER:
             round_complete = True 
+            
+        if betting_complete and len(players_in_play) <= 1:
+            round_complete = True
             
         return betting_complete, round_complete
     

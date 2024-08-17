@@ -17,6 +17,7 @@ class tableEnvironment(baseTable):
     def start_round(self):
         
         self.round_count += 1
+        self.round_information.update_indexes(self.player_turn_manager.return_indexes())
         self.database.add_round(self.round_information.to_db())
         
         logger.info('='*50)
@@ -74,10 +75,9 @@ class tableEnvironment(baseTable):
                         
         if len(self.players) < 2:
             game_terminated = True
-        else:                        
+        else:                     
             self.player_turn_manager.reset_has_bet_status()
             self.player_turn_manager.round_max_bet = 0
-            # self.player_turn_manager.update_blinds_and_dealer()
             
             self.pot_manager.reset_round(self.players, self.round_index)
             self.round_information.increase_round_information()
@@ -96,20 +96,21 @@ class tableEnvironment(baseTable):
             result = next(result for result in results if result.player_id == player.player_id)
             result_message = player.update_policy(result)
             logger.info(result_message)
-            
+
+        # reset all objects
+        self.database.update_round(self.round_information.to_db())
+        
+        self.remove_players()
+        self.pot_manager.pots = []
+        self.table_cards = []
+        self.betting_stage = BettingStagesEnum.PRE_FLOP
+        
+        self.player_turn_manager.end_round(self.players)
+        self.round_information.reset_round_information(self.players)
+        self.round_index += 1
+        
         if len(self.players) <= 1:
             game_terminated = True
-        else:
-            # reset all objects
-            self.database.update_round(self.round_information.to_db())
-            
-            self.remove_players()
-            self.pot_manager.pots = []
-            self.table_cards = []
-            self.betting_stage = BettingStagesEnum.PRE_FLOP
-            
-            self.player_turn_manager.end_round(self.players)
-            self.round_information.reset_round_information(self.players)
-            self.round_index += 1
         
         return results, game_terminated
+    

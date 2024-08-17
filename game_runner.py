@@ -37,7 +37,8 @@ class GameRunner:
             'host': config['database_config']['host'],
             'password': secrets['db_password'],
             'port': config['database_config']['port'],
-            'csv_path': secrets['csv_path']
+            'csv_path': secrets['csv_path'],
+            'enable_db_connection': config['database_config']['enable_db_connection']
         }
         
         game_config = {

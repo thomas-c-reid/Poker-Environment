@@ -36,6 +36,9 @@ CREATE TABLE tbl_agents(
 CREATE TABLE tbl_rounds (
     id SERIAL PRIMARY KEY,
     table_cards TEXT[], -- Array of text values
+    small_blind_idx INT,
+    big_blind_idx INT,
+    dealer_idx INT,
     round_duration INTERVAL
 );
 

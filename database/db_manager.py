@@ -12,10 +12,12 @@ logger = log_config.get_logger('database')
 class DatabaseManager:
     _instance = None
     
-    def __new__(cls, db_name: str=None, user: str=None, password: str=None, host: str=None, port: str=None, csv_path: str = 'database/csv_exports'):
+    def __new__(cls, db_name: str=None, user: str=None, password: str=None, host: str=None, port: str=None, 
+                csv_path: str = 'database/csv_exports', enable_db_connection: bool = False):
         if cls._instance is None:
             logger.info('initialising database manager singleton')      
             cls._instance = super(DatabaseManager, cls).__new__(cls)
+            cls.enable_db_connection = enable_db_connection
             cls.db_name = db_name
             cls.user = user
             cls.password = password
@@ -28,7 +30,8 @@ class DatabaseManager:
                 'wipe_tables_path': 'database/sql/wipe_tables.sql',
                 'create_tables_path': 'database/sql/create_tables.sql'
             }
-            cls._instance.run_setup()
+            if cls.enable_db_connection:
+                cls._instance.run_setup()
         return cls._instance
         
     def run_setup(self):
@@ -70,87 +73,98 @@ class DatabaseManager:
         logger.info('Tables created successfully')
         
     def add_agent(self, agent: Player=None):
-        sql = 'INSERT INTO tbl_agents (id, name, initial_bankroll) \n'
-        data = (agent.player_id,
-                agent.player_name,
-                agent.initial_bankroll
-        )
-        sql += 'VALUES (%s, %s, %s)'
-                
-        self.cursor.execute(sql, data)
-        self.connection.commit()
-        logger.info(f'Added Player: {agent.player_id} to DB')
+        if self.enable_db_connection:
+            sql = 'INSERT INTO tbl_agents (id, name, initial_bankroll) \n'
+            data = (agent.player_id,
+                    agent.player_name,
+                    agent.initial_bankroll
+            )
+            sql += 'VALUES (%s, %s, %s)'
+                    
+            self.cursor.execute(sql, data)
+            self.connection.commit()
+            logger.info(f'Added Player: {agent.player_id} to DB')
         
     def add_action(self, action: actionDto=None, round_count:int=0):
-        logger.info('Adding Action')
-        sql = 'INSERT INTO tbl_actions (player_id, action_type, round, amount, all_in_flag) \n'
-        data = (
-            action.player_id,
-            action.action.name,
-            round_count,
-            action.action_amount,
-            action.all_in_flag
-        )
-        sql += 'VALUES (%s, %s, %s, %s, %s)'
-        
-        self.cursor.execute(sql, data)
-        self.connection.commit()
-        logger.info(f'added action {action.action.name}')
+        if self.enable_db_connection:
+            logger.info('Adding Action')
+            sql = 'INSERT INTO tbl_actions (player_id, action_type, round, amount, all_in_flag) \n'
+            data = (
+                action.player_id,
+                action.action.name,
+                round_count,
+                action.action_amount,
+                action.all_in_flag
+            )
+            sql += 'VALUES (%s, %s, %s, %s, %s)'
+            
+            self.cursor.execute(sql, data)
+            self.connection.commit()
+            logger.info(f'added action {action.action.name}')
         
     def add_result(self, result: resultsDto = None, round_count:int = 0):
-        
-        self.update_player_bet_values(result)
-        
-        sql = 'INSERT INTO tbl_results (round, player_id, amount_won, amount_bet, reward, final_hand_value)'
-                
-        data = (
-            round_count,
-            result.player_id,
-            result.amount_won,
-            result.amount_bet,
-            result.reward,
-            result.final_hand_value.name
-        )
-        
-        sql += 'VALUES (%s, %s, %s, %s, %s, %s)'
-        
-        self.cursor.execute(sql, data)
-        self.connection.commit()
-        logger.info('Successfully added Result')
+        if self.enable_db_connection:
+            self.update_player_bet_values(result)
+            
+            sql = 'INSERT INTO tbl_results (round, player_id, amount_won, amount_bet, reward, final_hand_value)'
+                    
+            data = (
+                round_count,
+                result.player_id,
+                result.amount_won,
+                result.amount_bet,
+                result.reward,
+                result.final_hand_value.name
+            )
+            
+            sql += 'VALUES (%s, %s, %s, %s, %s, %s)'
+            
+            self.cursor.execute(sql, data)
+            self.connection.commit()
+            logger.info('Successfully added Result')
     
     def update_player_bet_values(self, result: resultsDto = None):
-        sql = '''
-        UPDATE tbl_agents
-        SET total_won = total_won + %s, 
-            total_bet = total_bet + %s
-        WHERE id = %s
-        '''
-        data = (
-            result.amount_won,
-            result.amount_bet,
-            str(result.player_id)
-        )
-        
-        self.cursor.execute(sql, data)
-        self.connection.commit()
-        logger.info('Successfully updated Player Bet Values')
+        if self.enable_db_connection:
+            sql = '''
+            UPDATE tbl_agents
+            SET total_won = total_won + %s, 
+                total_bet = total_bet + %s
+            WHERE id = %s
+            '''
+            data = (
+                result.amount_won,
+                result.amount_bet,
+                str(result.player_id)
+            )
+            
+            self.cursor.execute(sql, data)
+            self.connection.commit()
+            logger.info('Successfully updated Player Bet Values')
 
     def add_round(self, data: tuple = None):
-        sql = 'INSERT INTO tbl_rounds (table_cards, round_duration, id) \n'
-        sql += 'VALUES (%s, %s, %s)'
-                
-        self.cursor.execute(sql, data)
-        self.connection.commit()
+        if self.enable_db_connection:
+            sql = 'INSERT INTO tbl_rounds (table_cards, round_duration, small_blind_idx, big_blind_idx, dealer_idx, id) \n'
+            sql += 'VALUES (%s, %s, %s, %s, %s, %s)'
+                    
+            self.cursor.execute(sql, data)
+            self.connection.commit()
         
     def update_round(self, data: tuple = None):
-        sql = '''
-        UPDATE tbl_rounds
-        SET table_cards = %s,
-            round_duration = %s
-        WHERE id = %s
-        '''
-        self.cursor.execute(sql, data)
-        self.connection.commit()
+        if self.enable_db_connection:
+            sql = '''
+            UPDATE tbl_rounds
+            SET table_cards = %s,
+                round_duration = %s
+            WHERE id = %s
+            '''
+            
+            update_indexes = [0,1,-1]
+            
+            update_data = tuple(data[i] for i in update_indexes)
+            
+            
+            self.cursor.execute(sql, update_data)
+            self.connection.commit()
         
         
     def save_tables_to_csv(self):
@@ -178,15 +192,16 @@ class DatabaseManager:
             logger.info(f'Table {table} saved successfully')
         
     def close_connection(self, save_results: bool = False):
-        if save_results:
-            self.save_tables_to_csv()
+        if self.enable_db_connection:
+            if save_results:
+                self.save_tables_to_csv()
 
-        if self.cursor:
-            logger.info('Closing cursor')
-            self.cursor.close()
+            if self.cursor:
+                logger.info('Closing cursor')
+                self.cursor.close()
 
-        if self.connection:
-            logger.info('Closing database connection')
-            self.connection.close()
-            logger.info('Database connection closed')   
+            if self.connection:
+                logger.info('Closing database connection')
+                self.connection.close()
+                logger.info('Database connection closed')   
     

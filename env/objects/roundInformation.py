@@ -18,16 +18,17 @@ class roundInformation():
         base_action_space (list): a list of all possible actions that a player can take in a given round based on previous bet history
     '''
     
-    def __init__(self, players: list):
+    def __init__(self, players: list, blind_amount: int):
         self.table_cards = set()
         self.player_indices = {player.player_id: idx for idx, player in enumerate(players)}
         self.current_round_number = 1
         self.round_started_time = None
         self.round_duration = None
         self.initialise_matricies(players)
-        self.base_action_space = self.create_action_space()
+        self.action_space = self.create_action_space()
         self.current_betting_stage = BettingStagesEnum.PRE_FLOP
         self.total_pot_value = 0 # add this to the DB
+        self.blind_amount = blind_amount
         
         self.small_blind_idx = None
         self.big_blind_idx = None
@@ -71,7 +72,7 @@ class roundInformation():
         for i in range(num_players):
             for j in range(num_rounds):
                 self.action_amount_matrix[i][j] = (actions[i][j], bet_amounts[i][j]) 
-                
+                                
     def add_to_matricies(self, action: actionDto):
         player_idx = self.player_indices[action.player_id]
         
@@ -93,18 +94,19 @@ class roundInformation():
             
     def create_action_space(self):
         return [action for action in actionNameEnum if action not in (actionNameEnum.BIG_BLIND, actionNameEnum.SMALL_BLIND)]
-            
+                        
     def get_action_space(self, player_id: str, bettingStage: BettingStagesEnum):
         
-        temp_action_space = deepcopy(self.base_action_space)
-        player_idx = self.player_indices[player_id]
+        # TODO: add in a check so if player would go all_in - then he can't raise/bet etc... only call or fold
         
-        # This isn't fully correct, i don't know how to get the 'amount bet' from the 
+        temp_action_space = deepcopy(self.action_space)
+        player_idx = self.player_indices[player_id]
         current_amount_bet = self.action_amount_matrix[player_idx][bettingStage.value][1]
         
         amounts_bet = []
-        for idx in self.player_indices:
-            if idx != player_idx:
+        for player_id in self.player_indices:
+            if player_id != player_idx:
+                idx = self.player_indices[player_id]
                 amount_bet = self.action_amount_matrix[idx][bettingStage.value][1]
                 amounts_bet.append(amount_bet)
         max_amount_bet = max(amounts_bet)
@@ -116,18 +118,11 @@ class roundInformation():
         else:
             # Player can check or bet if no one has raised
             temp_action_space.remove(actionNameEnum.CALL)
-        
-        if current_amount_bet > 0:
-            # Player can't bet if they have already bet, they can only raise
-            temp_action_space.remove(actionNameEnum.BET)
-        else:
-            # Player can't raise if they haven't bet anything yet
             temp_action_space.remove(actionNameEnum.RAISE)
         
         return temp_action_space
 
-    def to_db(self):        
-        
+    def to_db(self):
         if len(self.table_cards) == 0:
             table_cards = None
         else:

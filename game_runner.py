@@ -44,7 +44,9 @@ class GameRunner:
         game_config = {
             'players': self.players,
             'blind_amount': config['game_config']['blind_amount'],
-            'action_delay': config['game_config']['action_delay']
+            'action_delay': config['game_config']['action_delay'],
+            'keep_bankroll': config['game_config']['keep_bankroll'],
+            'max_rounds': config['game_config']['max_rounds']
         }
                 
         return game_config, database_config
@@ -71,7 +73,7 @@ class GameRunner:
                 while not betting_terminated:
                     player = self.Table.get_current_player()
                     
-                    action = player.make_action(self.Table.round_information, self.Table.betting_stage)
+                    action = player.make_action(self.Table.round_information, self.Table.betting_stage, self.Table.keep_bankroll)
                     self.database.add_action(action, round_count)
                     
                     logger.info(f'[A] {action.player_id} | {action.action.name} - {action.action_amount} {"~A~" if action.all_in_flag else ""}')
@@ -90,10 +92,6 @@ class GameRunner:
                 
                 if game_terminated:
                     logger.info('GAME OVER')
-                    # print('GAME OVER')
-                    
-            # if round_count >= 10:
-            #     game_terminated = True
 
     def end(self):
         self.database.close_connection()

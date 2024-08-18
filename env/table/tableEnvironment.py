@@ -10,9 +10,11 @@ logger = logging_config.get_logger()
 
 class tableEnvironment(baseTable):
     
-    def __init__(self, players: list, blind_amount: int, action_delay: bool):
+    def __init__(self, players: list, blind_amount: int, action_delay: bool, keep_bankroll: bool = False, max_rounds: int = 1000):
         super().__init__(players=players, blind_amount=blind_amount, action_delay=action_delay)
         self.round_count = 0
+        self.keep_bankroll = keep_bankroll
+        self.max_rounds = max_rounds
         
     def start_round(self):
         
@@ -28,7 +30,7 @@ class tableEnvironment(baseTable):
         self.deal_initial_cards()
         
         # SMALL BLIND
-        small_blind = self.players[self.player_turn_manager.small_blind_idx].pay_blinds(actionNameEnum.SMALL_BLIND, self.blind_amount/2)
+        small_blind = self.players[self.player_turn_manager.small_blind_idx].pay_blinds(actionNameEnum.SMALL_BLIND, self.blind_amount/2, self.keep_bankroll)
         self.round_information.add_to_matricies(small_blind)
         
         
@@ -36,7 +38,7 @@ class tableEnvironment(baseTable):
         self.player_turn_manager.update_player_status(small_blind)
         self.database.add_action(small_blind, self.round_information.current_round_number)
         # BIG BLIND
-        big_blind = self.players[self.player_turn_manager.big_blind_idx].pay_blinds(actionNameEnum.BIG_BLIND, self.blind_amount)
+        big_blind = self.players[self.player_turn_manager.big_blind_idx].pay_blinds(actionNameEnum.BIG_BLIND, self.blind_amount, self.keep_bankroll)
         self.round_information.add_to_matricies(big_blind)
         self.pot_manager.add_action(big_blind)
         self.player_turn_manager.update_player_status(big_blind)
@@ -94,7 +96,7 @@ class tableEnvironment(baseTable):
             
         for player in self.players:
             result = next(result for result in results if result.player_id == player.player_id)
-            result_message = player.update_policy(result)
+            result_message = player.update_policy(result, self.keep_bankroll)
             logger.info(result_message)
 
         # reset all objects
@@ -109,7 +111,7 @@ class tableEnvironment(baseTable):
         self.round_information.reset_round_information(self.players)
         self.round_index += 1
         
-        if len(self.players) <= 1:
+        if len(self.players) <= 1 or self.round_information.current_round_number > self.max_rounds:
             game_terminated = True
         
         return results, game_terminated

@@ -20,7 +20,7 @@ class baseTable(ABC):
         self.table_cards = []
         self.player_cards = []
         self.num_players = len(players)
-        self.round_information = roundInformation(players)
+        self.round_information = roundInformation(players, blind_amount)
         self.betting_stage = BettingStagesEnum.PRE_FLOP
         self.blind_amount = blind_amount
         self.pot_manager = PotManager(players)
